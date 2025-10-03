@@ -1,11 +1,4 @@
-import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
-import {
-    subscribeGETEvent,
-    subscribePOSTEvent,
-    realTimeEvent,
-    startServer
-  } from "soquetic"; 
-  
+import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";  
   import { addUser, getUser } from "./db.js";
   import { generateToken } from "./utils.js";
   
@@ -21,7 +14,7 @@ import {
     const ok = addUser(username, password);
     if (!ok) return { error: "Usuario ya existe" };
   
-    return { status: "ok", msg: "Usuario registrado" };
+    return { status: "ok", msg: "Usuaxrio registrado" };
   });
   
   // Login
@@ -49,16 +42,26 @@ import {
   // -------------------------------
   // Eventos GET (datos básicos)
   // -------------------------------
-  subscribeGETEvent("ping", () => {
-    return { msg: "pong" };
-  });
-  
-  subscribeGETEvent("getUser", (query) => {
-    const { username } = query;
-    const user = getUser(username);
-    if (!user) return { error: "Usuario no encontrado" };
-    return { username: user.username };
-  });
+// PING (para testear que el servidor anda)
+subscribeGETEvent("ping", () => {
+  return { msg: "pong" };
+});
+
+// GET USER (recibe username como query param)
+subscribeGETEvent("getUser", (query) => {
+  const { username } = query;
+
+  if (!username) {
+    return { error: "Falta el username en la query" };
+  }
+
+  const user = getUser(username);
+  if (!user) {
+    return { error: "Usuario no encontrado" };
+  }
+
+  return { username: user.username };
+});
   
   // -------------------------------
   // Real Time Events (push al frontend)

@@ -1,4 +1,5 @@
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
+import { addUser, getUser} from "./db.js";
 
 subscribePOSTEvent("register", (data) => {
     const { username, password } = data;
