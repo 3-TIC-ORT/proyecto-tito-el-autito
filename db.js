@@ -1,9 +1,9 @@
 import fs from "fs";
 
-// 📁 Ruta del archivo donde se guardan los usuarios
+//  Ruta del archivo donde se guardan los usuarios
 const DB_PATH = "./data/users.json";
 
-// 🧠 Cargamos los usuarios al iniciar
+// Cargamos los usuarios al iniciar
 let users = [];
 try {
   if (fs.existsSync(DB_PATH)) {
@@ -13,11 +13,11 @@ try {
     users = [];
   }
 } catch (err) {
-  console.error("⚠️ Error al leer la base de datos:", err);
+  console.error(" Error al leer la base de datos:", err);
   users = [];
 }
 
-// 💾 Función para guardar los cambios en el archivo
+//  Función para guardar los cambios en el archivo
 function saveDB() {
   fs.writeFileSync(DB_PATH, JSON.stringify(users, null, 2));
 }
@@ -35,17 +35,17 @@ export function addUser(username, email, password) {
   return true;
 }
 
-// 🔍 Buscar usuario por nombre
+//  Buscar usuario por nombre
 export function getUser(username) {
   return users.find(u => u.username === username);
 }
 
-// 📋 Listar todos los usuarios (útil para debug)
+//  Listar todos los usuarios (útil para debug)
 export function getAllUsers() {
   return users;
 }
 
-// ❌ Eliminar un usuario
+//  Eliminar un usuario
 export function deleteUser(username) {
   const index = users.findIndex(u => u.username === username);
   if (index === -1) return false;
@@ -55,7 +55,7 @@ export function deleteUser(username) {
   return true;
 }
 
-// ✏️ Actualizar datos de un usuario
+//  Actualizar datos de un usuario
 export function updateUser(username, newData) {
   const user = getUser(username);
   if (!user) return false;
@@ -64,3 +64,14 @@ export function updateUser(username, newData) {
   saveDB();
   return true;
 }
+// db.js
+import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
+
+const users = [
+    { username: "admin", password: "1234" },
+    { username: "olivia", password: "clave123" }
+  ];
+  
+  export const getUser = (username) => {
+    return users.find(u => u.username === username);
+  };
