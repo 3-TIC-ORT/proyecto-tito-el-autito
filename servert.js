@@ -1,51 +1,61 @@
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 import { addUser, getUser } from "./db.js";
-import { generateToken } from "./utils.js";
 
 // -------------------------------
 // Registro
 // -------------------------------
 subscribePOSTEvent("register", (data) => {
-  const { username, email, password } = data;
+  try {
+    const { username, email, password } = data;
 
-  if (!username || !email || !password) {
-    return { error: "Faltan datos (username, email o password)" };
+    if (!username || !email || !password) {
+      return { error: "Faltan datos (username, email o password)" };
+    }
+
+    const ok = addUser(username, email, password);
+    if (!ok) {
+      return { error: "El usuario o el correo ya existen" };
+    }
+
+    return { status: "ok", msg: "Usuario registrado correctamente" };
+  } catch (err) {
+    console.error("Error en register:", err);
+    return { error: "Error interno del servidor en register." };
   }
-
-  const ok = addUser(username, email, password);
-  if (!ok) {
-    return { error: "El usuario o el correo ya existen" };
-  }
-
-  return { status: "ok", msg: "Usuario registrado correctamente" };
 });
 
 // -------------------------------
 // Login
 // -------------------------------
 subscribePOSTEvent("login", (data) => {
-  const { username, password } = data;
-  const user = getUser(username);
+  try {
+    const { username, password } = data;
+    const user = getUser(username);
 
-  if (!user || user.password !== password) {
-    return { error: "Credenciales inválidas" };
+    if (!user) {
+      return { error: "Usuario no encontrado" };
+    }
+    if (user.password !== password) {
+      return { error: "Contraseña incorrecta" };
+    }
+
+    return { status: "ok", msg: "Inicio de sesión exitoso" };
+  } catch (err) {
+    console.error("Error en login:", err);
+    return { error: "Error interno del servidor en login." };
   }
-
-  const token = generateToken(username);
-  return { status: "ok", token };
 });
 
 // -------------------------------
 // Envío de comando al auto
 // -------------------------------
 subscribePOSTEvent("sendCommand", (data) => {
-  console.log(" Comando recibido:", data.command);
-  // Acá iría la lógica para enviar al hardware (por ejemplo Arduino)
+  console.log("Comando recibido:", data.command);
   return { status: "ok", executed: data.command };
 });
 
 // -------------------------------
-// Eventos GET (ping, getUser)
+// Eventos GET
 // -------------------------------
 subscribeGETEvent("ping", () => {
   return { msg: "pong" };
@@ -62,7 +72,7 @@ subscribeGETEvent("getUser", (query) => {
 });
 
 // -------------------------------
-// Real Time Event (datos del auto)
+// Evento en tiempo real
 // -------------------------------
 setInterval(() => {
   const info = {
@@ -77,3 +87,4 @@ setInterval(() => {
 // Iniciar servidor
 // -------------------------------
 startServer(4000, true);
+console.log("🚀 Servidor Soquetic activo en http://localhost:4000");

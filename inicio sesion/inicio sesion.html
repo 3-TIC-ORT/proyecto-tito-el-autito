@@ -4,16 +4,104 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Iniciar Sesión</title>
-  <link rel="stylesheet" href="inicio sesion.css">
+  <link rel="stylesheet" href="inicio-sesion.css">
+  <style>
+    /* Estilo básico para que se vea bien sin el CSS externo */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #74b9ff, #a29bfe);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 95%;
+      padding: 10px;
+      background-color: #0984e3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #74b9ff;
+    }
+
+    .mensaje {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+
   <div class="login-container">
     <h2>Iniciar Sesión</h2>
-    <form>
-      <input type="text" placeholder="Usuario" required>
-      <input type="password" placeholder="Contraseña" required>
+    <form id="loginForm">
+      <input type="text" id="usuario" placeholder="Usuario" required>
+      <input type="password" id="contraseña" placeholder="Contraseña" required>
       <button type="submit">Ingresar</button>
     </form>
+    <p class="mensaje" id="mensaje"></p>
   </div>
+
+  <script>
+   const form = document.getElementById("loginForm");
+  const mensaje = document.getElementById("mensaje");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById("usuario").value.trim();
+    const password = document.getElementById("contraseña").value.trim();
+
+    try {
+      const res = await fetch("http://localhost:4000/event/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await res.json();
+
+      if (data.error) {
+        mensaje.style.color = "red";
+        mensaje.textContent = "❌ " + data.error;
+      } else {
+        mensaje.style.color = "green";
+        mensaje.textContent = "✅ Sesión iniciada correctamente.";
+        setTimeout(() => {
+          window.location.href = "pagina-principal.html";
+        }, 1500);
+      }
+    } catch (error) {
+      mensaje.style.color = "red";
+      mensaje.textContent = "⚠️ Error al conectar con el servidor Soquetic.";
+    }
+  });
+  </script>
 </body>
 </html>
