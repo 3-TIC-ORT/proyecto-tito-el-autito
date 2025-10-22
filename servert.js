@@ -87,4 +87,4 @@ setInterval(() => {
 // Iniciar servidor
 // -------------------------------
 startServer(4000, true);
-console.log("🚀 Servidor Soquetic activo en http://localhost:4000");
+console.log(" Servidor Soquetic activo en http://localhost:4000");
