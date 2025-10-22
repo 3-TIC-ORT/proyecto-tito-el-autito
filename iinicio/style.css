@@ -6,14 +6,35 @@ body {
   }
   
   header {
-    padding: 20px;
+    padding: 20px;  
     text-align: center;
   }
   
   .contenedor-play {
     display: flex;
     justify-content: flex-end;
+    width: 180px;
+    height: 40px;
   }
+
+.botonsito-play {
+  width: 180px;
+  height: 40px;
+  background-color: transparent;
+  font-size: xx-large;
+  color: white;
+  border: 1.5px solid white;
+  padding: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.botonsito-play:hover {
+  background-color: rgba(255, 255, 255, 0.219);
+  color: rgba(231, 228, 223, 0.644);
+}
 
   .contenedor-botones {
    display: flex;
@@ -46,3 +67,8 @@ body {
     bottom: 0;
     width: 100%;
   }
+
+.playbutton {
+  width:20px;
+  height: 20px;
+}
