@@ -75,51 +75,13 @@
     <p class="mensaje" id="mensaje"></p>
   </main>
 
-  <!-- Importante: librerías Soquetic -->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
 
-  <!-- Script local -->
+
   <script>
-    const form = document.getElementById("registroForm");
-    const mensaje = document.getElementById("mensaje");
 
-    // Crear cliente Soquetic
-    const client = new SoqueticClient("http://localhost:4000");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const username = document.getElementById("usuario").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("contraseña").value.trim();
-      const repetir = document.getElementById("repetir").value.trim();
-
-      if (password !== repetir) {
-        mensaje.style.color = "red";
-        mensaje.textContent = "⚠️ Las contraseñas no coinciden.";
-        return;
-      }
-
-      try {
-        const data = await client.sendEvent("register", { username, email, password });
-
-        if (data.status === "ok") {
-          mensaje.style.color = "green";
-          mensaje.textContent = "✅ " + data.msg;
-          setTimeout(() => {
-            window.location.href = "inicio-sesion.html";
-          }, 1500);
-        } else {
-          mensaje.style.color = "red";
-          mensaje.textContent = "❌ " + (data.error || "Error desconocido");
-        }
-      } catch (error) {
-        mensaje.style.color = "red";
-        mensaje.textContent = "⚠️ Error de conexión con el servidor Soquetic.";
-        console.error(error);
-      }
-    });
   </script>
 </body>
 </html>

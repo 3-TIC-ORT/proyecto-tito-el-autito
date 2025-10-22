@@ -90,44 +90,11 @@
     <p class="registro-link">¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
   </main>
 
-  <!-- Librerías Soquetic -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
 
-  <!-- Script local -->
   <script>
-    const form = document.getElementById("loginForm");
-    const mensaje = document.getElementById("mensaje");
-
-    // Crear cliente Soquetic
-    const client = new SoqueticClient("http://localhost:4000");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const username = document.getElementById("usuario").value.trim();
-      const password = document.getElementById("contraseña").value.trim();
-
-      try {
-        const data = await client.sendEvent("login", { username, password });
-
-        if (data.status === "ok") {
-          mensaje.style.color = "green";
-          mensaje.textContent = "✅ " + data.msg;
-          setTimeout(() => {
-            // Redirigir al dashboard o página principal
-            window.location.href = "dashboard.html";
-          }, 1500);
-        } else {
-          mensaje.style.color = "red";
-          mensaje.textContent = "❌ " + (data.error || "Credenciales inválidas");
-        }
-      } catch (error) {
-        mensaje.style.color = "red";
-        mensaje.textContent = "⚠️ Error al conectar con el servidor Soquetic.";
-        console.error(error);
-      }
-    });
+  
   </script>
 </body>
 </html>
