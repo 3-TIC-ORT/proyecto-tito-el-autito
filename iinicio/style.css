@@ -10,21 +10,28 @@ body {
     text-align: center;
   }
   
+  .contenedor-play {
+    display: flex;
+    justify-content: flex-end;
+  }
+
   .contenedor-botones {
    display: flex;
    justify-content: flex-end;
-    gap: 10px;
+    gap: 20px;
     padding: 10px 20px;
   }
 
 .boton {
   background-color: transparent;
+  font-size: medium;
   color: white;
   border: 1.5px solid white;
   border-radius: 25px;
-  padding: 8px 20px;
+  padding: 14px 24px;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 9px 7px 2.6px rgba(0, 0, 0, 0.3);
   }
 
 .boton:hover {
