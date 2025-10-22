@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar Sesión</title>
+  <title>Iniciar Sesión - Soquetic App</title>
   <link rel="stylesheet" href="inicio-sesion.css">
   <style>
-    /* Estilo básico para que se vea bien sin el CSS externo */
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #74b9ff, #a29bfe);
@@ -14,9 +13,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
     }
 
-    .login-container {
+    header h1 {
+      color: white;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    form {
       background: white;
       padding: 2rem;
       border-radius: 1rem;
@@ -36,7 +41,7 @@
     button {
       width: 95%;
       padding: 10px;
-      background-color: #0984e3;
+      background-color: #6c5ce7;
       color: white;
       border: none;
       border-radius: 5px;
@@ -44,64 +49,85 @@
     }
 
     button:hover {
-      background-color: #74b9ff;
+      background-color: #a29bfe;
     }
 
     .mensaje {
       margin-top: 10px;
       font-weight: bold;
     }
+
+    .registro-link {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: white;
+    }
+
+    .registro-link a {
+      color: #ffeaa7;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .registro-link a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+  <header>
+    <h1>Iniciar Sesión</h1>
+  </header>
 
-  <div class="login-container">
-    <h2>Iniciar Sesión</h2>
+  <main>
     <form id="loginForm">
-      <input type="text" id="usuario" placeholder="Usuario" required>
+      <input type="text" id="usuario" placeholder="Nombre de usuario" required>
       <input type="password" id="contraseña" placeholder="Contraseña" required>
       <button type="submit">Ingresar</button>
     </form>
     <p class="mensaje" id="mensaje"></p>
-  </div>
+    <p class="registro-link">¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
+  </main>
 
+  <!-- Librerías Soquetic -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+
+  <!-- Script local -->
   <script>
-   const form = document.getElementById("loginForm");
-  const mensaje = document.getElementById("mensaje");
+    const form = document.getElementById("loginForm");
+    const mensaje = document.getElementById("mensaje");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    // Crear cliente Soquetic
+    const client = new SoqueticClient("http://localhost:4000");
 
-    const username = document.getElementById("usuario").value.trim();
-    const password = document.getElementById("contraseña").value.trim();
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    try {
-      const res = await fetch("http://localhost:4000/event/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-      });
+      const username = document.getElementById("usuario").value.trim();
+      const password = document.getElementById("contraseña").value.trim();
 
-      const data = await res.json();
+      try {
+        const data = await client.sendEvent("login", { username, password });
 
-      if (data.error) {
+        if (data.status === "ok") {
+          mensaje.style.color = "green";
+          mensaje.textContent = "✅ " + data.msg;
+          setTimeout(() => {
+            // Redirigir al dashboard o página principal
+            window.location.href = "dashboard.html";
+          }, 1500);
+        } else {
+          mensaje.style.color = "red";
+          mensaje.textContent = "❌ " + (data.error || "Credenciales inválidas");
+        }
+      } catch (error) {
         mensaje.style.color = "red";
-        mensaje.textContent = "❌ " + data.error;
-      } else {
-        mensaje.style.color = "green";
-        mensaje.textContent = "✅ Sesión iniciada correctamente.";
-        setTimeout(() => {
-          window.location.href = "pagina-principal.html";
-        }, 1500);
+        mensaje.textContent = "⚠️ Error al conectar con el servidor Soquetic.";
+        console.error(error);
       }
-    } catch (error) {
-      mensaje.style.color = "red";
-      mensaje.textContent = "⚠️ Error al conectar con el servidor Soquetic.";
-    }
-  });
+    });
   </script>
 </body>
 </html>

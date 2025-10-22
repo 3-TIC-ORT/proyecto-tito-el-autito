@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Página de Registro</title>
+  <title>Registro - Soquetic App</title>
   <link rel="stylesheet" href="registro.css">
   <style>
     body {
@@ -59,8 +59,7 @@
   </style>
 </head>
 <body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+  
   <header>
     <h1>Registro</h1>
   </header>
@@ -76,49 +75,51 @@
     <p class="mensaje" id="mensaje"></p>
   </main>
 
+  <!-- Importante: librerías Soquetic -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+
+  <!-- Script local -->
   <script>
     const form = document.getElementById("registroForm");
-  const mensaje = document.getElementById("mensaje");
+    const mensaje = document.getElementById("mensaje");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    // Crear cliente Soquetic
+    const client = new SoqueticClient("http://localhost:4000");
 
-    const username = document.getElementById("usuario").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("contraseña").value.trim();
-    const repetir = document.getElementById("repetir").value.trim();
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    if (password !== repetir) {
-      mensaje.style.color = "red";
-      mensaje.textContent = "⚠️ Las contraseñas no coinciden.";
-      return;
-    }
+      const username = document.getElementById("usuario").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("contraseña").value.trim();
+      const repetir = document.getElementById("repetir").value.trim();
 
-    try {
-      const res = await fetch("http://localhost:4000/event/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password })
-      });
-
-      const data = await res.json();
-
-      if (data.status === "ok") {
-        mensaje.style.color = "green";
-        mensaje.textContent = "✅ " + data.msg;
-        setTimeout(() => {
-          window.location.href = "inicio-sesion.html";
-        }, 1500);
-      } else {
+      if (password !== repetir) {
         mensaje.style.color = "red";
-        mensaje.textContent = "❌ " + (data.error || "Error desconocido");
+        mensaje.textContent = "⚠️ Las contraseñas no coinciden.";
+        return;
       }
-    } catch (error) {
-      mensaje.style.color = "red";
-      mensaje.textContent = "⚠️ No se pudo conectar con el servidor Soquetic.";
-      console.error(error);
-    }
-  });
+
+      try {
+        const data = await client.sendEvent("register", { username, email, password });
+
+        if (data.status === "ok") {
+          mensaje.style.color = "green";
+          mensaje.textContent = "✅ " + data.msg;
+          setTimeout(() => {
+            window.location.href = "inicio-sesion.html";
+          }, 1500);
+        } else {
+          mensaje.style.color = "red";
+          mensaje.textContent = "❌ " + (data.error || "Error desconocido");
+        }
+      } catch (error) {
+        mensaje.style.color = "red";
+        mensaje.textContent = "⚠️ Error de conexión con el servidor Soquetic.";
+        console.error(error);
+      }
+    });
   </script>
 </body>
 </html>
