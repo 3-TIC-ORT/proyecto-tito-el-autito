@@ -29,43 +29,38 @@ function iniciodesesion(usuario, contraseña) {
   }
 }
 
-
-function registrarse(usuario, contraseña) {
-  let conectar = JSON.parse(fs.readFileSync("usuario.json", "utf-8"));
-
-
-  for (let i = 0; i < conectar.length; i++) {
-    if (conectar[i].usuario === usuario) {
-      return "El usuario ya existe";
-    }
-  }
-
-
-  const nuevoUsuario = { usuario: usuario, contraseña: contraseña };
-  conectar.push(nuevoUsuario);
-
-
-  fs.writeFileSync("usuario.json", JSON.stringify(conectar, null, 2), "utf-8");
-
-
-  return "Usuario registrado correctamente";
-}
-
-
-console.log(iniciodesesion("olivia", "olivia42"));  
-console.log(iniciodesesion("pepe123", "12345"));      
-console.log(registrarse("pepe", "pepe!"));      
+ 
 
 
 
 
 subscribePOSTEvent("login", (data) => {
-  return iniciodesesion(data.usuario, data.contraseña);
+  return iniciodesesion(data.username, data.password);
 });
 
 
 subscribePOSTEvent("register", (data) => {
-  return registrarse(data.usuario, data.contraseña);
+  let conectar = JSON.parse(fs.readFileSync("usuario.json", "utf-8"));
+
+
+  for (let i = 0; i < conectar.length; i++) {
+    if (conectar[i].usuario === data.usuario) {
+      return "El usuario ya existe";
+    }
+    else {
+      nuevoUsuario = { usuario: data.usuario, contraseña: data.contraseña, email: data.email };
+      conectar.push(nuevoUsuario);
+    
+    
+      fs.writeFileSync("usuario.json", JSON.stringify(conectar, null, 2), "utf-8");
+    
+    
+      return "Usuario registrado correctamente";
+    }
+  }
+
+
+
 });
 
 
