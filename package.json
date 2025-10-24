@@ -1,5 +1,25 @@
 {
   "dependencies": {
-    "serialport": "^13.0.0"
-  }
+    "serialport": "^13.0.0",
+    "soquetic": "^1.4.2"
+  },
+  "name": "proyecto-tito-el-autito",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3-TIC-ORT/proyecto-tito-el-autito.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3-TIC-ORT/proyecto-tito-el-autito/issues"
+  },
+  "homepage": "https://github.com/3-TIC-ORT/proyecto-tito-el-autito#readme",
+  "description": ""
 }
