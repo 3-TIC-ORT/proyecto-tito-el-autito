@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro</title>
@@ -68,15 +72,13 @@
     <form id="registroForm">
       <input type="text" id="usuario" placeholder="Nombre de usuario" required>
       <input type="email" id="email" placeholder="Gmail" required>
-      <input type="password" id="contraseña" placeholder="Contraseña" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
       <input type="password" id="repetir" placeholder="Repetir contraseña" required>
       <button id="submit">Registrarse</button>
     </form>
     <p class="mensaje" id="mensaje"></p>
   </main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
 
 
   <script>
@@ -85,10 +87,10 @@
     const respuesta = document.getElementById("respuesta");
 
     function mandar(){
-  let  username = document.getElementById("usuario").value
+        let  usuario = document.getElementById("usuario").value
         let email= document.getElementById("email").value
-        let password = document.getElementById("contraseña").value
-  postEvent("register", {username, password, email} );
+        let password = document.getElementById("password").value
+  postEvent("register", {usuario, password, email} );
 }
     let boton = document.getElementById("submit")
     boton.addEventListener("click", mandar)
