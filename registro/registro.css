@@ -6,10 +6,12 @@ header {
   }
   
   body {
+    background-image: url("../img/registrarse-3.jpg");
+    background-size: cover;
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
   }
+
   
   main {
     display: flex;
