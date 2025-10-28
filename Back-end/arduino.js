@@ -14,14 +14,6 @@ port.on("open", () => {
   console.log(" Puerto serial abierto con Arduino");
 });
 
-//comandos
-const commands = {
-  forward: "W",
-  backward: "S",
-  left: "A",
-  right: "D",
-
-};
 
 //mensajes desde el arduino
 parser.on("data", (data) => {

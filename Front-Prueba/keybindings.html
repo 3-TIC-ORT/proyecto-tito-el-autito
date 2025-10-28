@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurar Teclas</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    input, button {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+    }
+
+    .key-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Configuración de Teclas</h1>
+  <form id="keyForm">
+    <input type="text" id="username" placeholder="Nombre de usuario" required>
+    <input type="email" id="email" placeholder="Correo electrónico">
+    <input type="password" id="password" placeholder="Contraseña">
+
+    <div class="key-group">
+      <label>Arriba:</label> <input type="text" id="up" maxlength="1" placeholder="Ej: W" required>
+      <label>Abajo:</label> <input type="text" id="down" maxlength="1" placeholder="Ej: S" required>
+      <label>Izquierda:</label> <input type="text" id="left" maxlength="1" placeholder="Ej: A" required>
+      <label>Derecha:</label> <input type="text" id="right" maxlength="1" placeholder="Ej: D" required>
+    </div>
+
+    <button type="submit">Guardar configuración</button>
+  </form>
+
+  <div id="resultado"></div>
+
+  <script>
+    const form = document.getElementById("keyForm");
+    const resultado = document.getElementById("resultado");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        username: document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+        keybindings: {
+          up: document.getElementById("up").value.toUpperCase(),
+          down: document.getElementById("down").value.toUpperCase(),
+          left: document.getElementById("left").value.toUpperCase(),
+          right: document.getElementById("right").value.toUpperCase()
+        }
+      };
+
+      try {
+        const response = await fetch("http://localhost:3000/api/usuarios", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        resultado.textContent = "✔ Configuración guardada correctamente.";
+        console.log("Respuesta del servidor:", result);
+      } catch (error) {
+        resultado.textContent = "❌ Error al guardar configuración.";
+        console.error("Error:", error);
+      }
+    });
+  </script>
+</body>
+</html>

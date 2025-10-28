@@ -4,8 +4,6 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// Ruta al archivo JSON
 const DB_PATH = path.join(__dirname, "data", "usuario.json");
 
 // Array en memoria
@@ -32,17 +30,41 @@ async function saveUsuarios() {
   }
 }
 
-// Exportadas
-export async function addUsuario(username, email, password) {
-  const exists = usuarios.some(u => u.username === username || u.email === email);
-  if (exists) return false;
+// Agregar o actualizar usuario
+export async function addOrUpdateUsuario(username, email, password, keybindings) {
+  const existingUser = usuarios.find(u => u.username === username);
 
-  const nuevo = { username, email, password };
-  usuarios.push(nuevo);
+  if (existingUser) {
+    // Si ya existe, actualiza los datos
+    if (email) existingUser.email = email;
+    if (password) existingUser.password = password;
+    if (keybindings) {
+      existingUser.keybindings = {
+        ...existingUser.keybindings,
+        ...keybindings
+      };
+    }
+  } else {
+    // Si no existe, crea uno nuevo
+    const nuevo = {
+      username,
+      email,
+      password,
+      keybindings: keybindings || {
+        up: "ArrowUp",
+        down: "ArrowDown",
+        left: "ArrowLeft",
+        right: "ArrowRight"
+      }
+    };
+    usuarios.push(nuevo);
+  }
+
   await saveUsuarios();
   return true;
 }
 
+// Obtener usuario por nombre
 export function getUsuario(username) {
   return usuarios.find(u => u.username === username);
 }
