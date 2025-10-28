@@ -3,5 +3,15 @@
     "usuario": "23833022",
     "contraseña": "5432",
     "email": "sebalaburo@hotmail.com"
+  },
+  {
+    "usuario": "lenny",
+    "contraseña": "lenny123",
+    "email": "lenny@gmail.com"
+  },
+  {
+    "usuario": "shuli",
+    "contraseña": "shuli987",
+    "email": "shuli@gmail.com"
   }
 ]
