@@ -1,7 +1,7 @@
 import { subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 import { SerialPort, ReadlineParser } from "serialport";
 
-// ====== CONFIGURACIÓN DEL PUERTO SERIAL ======
+//puerto serial
 const port = new SerialPort({
   path: "COM3", 
   baudRate: 9600, 
@@ -14,7 +14,7 @@ port.on("open", () => {
   console.log(" Puerto serial abierto con Arduino");
 });
 
-// ====== MAPA DE COMANDOS ======
+//comandos
 const commands = {
   forward: "W",
   backward: "S",
@@ -23,7 +23,7 @@ const commands = {
 
 };
 
-// ====== ESCUCHAR MENSAJES DESDE EL ARDUINO ======
+//mensajes desde el arduino
 parser.on("data", (data) => {
   const mensaje = data.toString().trim();
   console.log(" Mensaje recibido del Arduino:", mensaje);
@@ -37,7 +37,7 @@ parser.on("data", (data) => {
   }
 });
 
-// ====== EVENTO POST: MOVER AUTO ======
+//mover el auto
 subscribePOSTEvent("moverAuto", (data) => {
   const { direccion } = data; 
   console.log(` Movimiento solicitado: ${direccion}`);
@@ -48,7 +48,7 @@ subscribePOSTEvent("moverAuto", (data) => {
     return { status: "Comando no reconocido" };
   }
 
-  // Enviar comando al Arduino
+
   port.write(signal, (err) => {
     if (err) {
       console.error(" Error al enviar al Arduino:", err.message);
@@ -57,12 +57,11 @@ subscribePOSTEvent("moverAuto", (data) => {
     }
   });
 
-  // Notificar al frontend que se procesó el movimiento
   realTimeEvent("movimientoAuto", { direccion });
 
   return { status: "Movimiento enviado al Arduino" };
 });
 
-// ====== INICIO DEL SERVIDOR ======
+//inicio del servidor
 startServer(3000);
 console.log(" Servidor corriendo en puerto 3000");
