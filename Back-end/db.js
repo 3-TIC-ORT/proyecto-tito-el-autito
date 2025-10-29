@@ -31,7 +31,7 @@ async function saveUsuarios() {
 }
 
 // Agregar o actualizar usuario
-export async function addOrUpdateUsuario(username, email, password) {
+export async function addUsuario(username, email, password) {
   const existingUser = usuarios.find(u => u.username === username);
 
   if (existingUser) {
