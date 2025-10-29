@@ -18,5 +18,82 @@
     "usuario": "caca",
     "contraseña": "caca6",
     "email": "49759146@est.ort.edu.ar"
+  },
+  {
+    "usuario": "tania",
+    "contraseña": "taniaL",
+    "email": "tania@gmail.com",
+    "keybindings": {
+      "up": "ArrowUp",
+      "down": "ArrowDown",
+      "left": "ArrowLeft",
+      "right": "ArrowRight"
+    }
+  },
+  {
+    "usuario": "jaja",
+    "contraseña": "jaja",
+    "email": "jaja@gmail.com",
+    "keybindings": {
+      "up": "ArrowUp",
+      "down": "ArrowDown",
+      "left": "ArrowLeft",
+      "right": "ArrowRight"
+    }
+  },
+  {
+    "usuario": "12345",
+    "contraseña": "12345",
+    "email": "12345@gmail.com",
+    "keybindings": {
+      "up": "ArrowUp",
+      "down": "ArrowDown",
+      "left": "ArrowLeft",
+      "right": "ArrowRight"
+    }
+  },
+  {
+    "usuario": "0987",
+    "contraseña": "098",
+    "email": "0987@gmail.com",
+    "keybindings": {
+      "up": "ArrowUp",
+      "down": "ArrowDown",
+      "left": "ArrowLeft",
+      "right": "ArrowRight"
+    }
+  },
+  {
+    "usuario": "lala",
+    "contraseña": "lala",
+    "email": "lala@gmail.com",
+    "keybindings": {
+      "up": "ArrowUp",
+      "down": "ArrowDown",
+      "left": "ArrowLeft",
+      "right": "ArrowRight"
+    }
+  },
+  {
+    "usuario": "42",
+    "contraseña": "42",
+    "email": "42@gmail.com",
+    "keybindings": {
+      "up": "ArrowUp",
+      "down": "ArrowDown",
+      "left": "ArrowLeft",
+      "right": "ArrowRight"
+    }
+  },
+  {
+    "usuario": "mama",
+    "contraseña": "mama",
+    "email": "mama@gmail.com",
+    "keybindings": {
+      "up": "ArrowUp",
+      "down": "ArrowDown",
+      "left": "ArrowLeft",
+      "right": "ArrowRight"
+    }
   }
 ]

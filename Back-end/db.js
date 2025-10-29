@@ -31,31 +31,21 @@ async function saveUsuarios() {
 }
 
 // Agregar o actualizar usuario
-export async function addOrUpdateUsuario(username, email, password, keybindings) {
+export async function addOrUpdateUsuario(username, email, password) {
   const existingUser = usuarios.find(u => u.username === username);
 
   if (existingUser) {
     // Si ya existe, actualiza los datos
     if (email) existingUser.email = email;
     if (password) existingUser.password = password;
-    if (keybindings) {
-      existingUser.keybindings = {
-        ...existingUser.keybindings,
-        ...keybindings
-      };
-    }
+    
   } else {
     // Si no existe, crea uno nuevo
     const nuevo = {
       username,
       email,
-      password,
-      keybindings: keybindings || {
-        up: "ArrowUp",
-        down: "ArrowDown",
-        left: "ArrowLeft",
-        right: "ArrowRight"
-      }
+      password
+     
     };
     usuarios.push(nuevo);
   }

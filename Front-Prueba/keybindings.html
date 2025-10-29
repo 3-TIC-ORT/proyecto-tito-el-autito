@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Configurar Teclas</title>
@@ -73,45 +77,30 @@
       <label>Derecha:</label> <input type="text" id="right" maxlength="1" placeholder="Ej: D" required>
     </div>
 
+
     <button type="submit">Guardar configuración</button>
   </form>
 
   <div id="resultado"></div>
 
   <script>
-    const form = document.getElementById("keyForm");
-    const resultado = document.getElementById("resultado");
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    connect2Server()
+    const respuesta = document.getElementById("respuesta");
 
-      const data = {
-        username: document.getElementById("username").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value,
-        keybindings: {
-          up: document.getElementById("up").value.toUpperCase(),
-          down: document.getElementById("down").value.toUpperCase(),
-          left: document.getElementById("left").value.toUpperCase(),
-          right: document.getElementById("right").value.toUpperCase()
-        }
-      };
-
-      try {
-        const response = await fetch("http://localhost:3000/api/usuarios", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
-
-        const result = await response.json();
-        resultado.textContent = "✔ Configuración guardada correctamente.";
-        console.log("Respuesta del servidor:", result);
-      } catch (error) {
-        resultado.textContent = "❌ Error al guardar configuración.";
-        console.error("Error:", error);
-      }
-    });
+    function mandar(){
+        let  usuario = document.getElementById("usuario").value
+        let email= document.getElementById("email").value
+        let password = document.getElementById("password").value
+        let arriba = document.getElementById("avanzar").value
+        let abajo = document.getElementById("retroceso").value
+        let Izquierda = document.getElementById("girar a la izquierda").value
+        let Derecha = docuument.getElementById("girar a la derecha").value
+  postEvent("keybindings", {usuario, password, email, keybindings} );
+}
+    let boton = document.getElementById("submit")
+    boton.addEventListener("click", mandar)
+  
   </script>
 </body>
 </html>
