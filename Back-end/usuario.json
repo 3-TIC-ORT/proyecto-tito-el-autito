@@ -95,5 +95,15 @@
       "left": "ArrowLeft",
       "right": "ArrowRight"
     }
+  },
+  {
+    "usuario": "pepe22",
+    "contraseña": "pepe22",
+    "email": "pepe22@gmail.com"
+  },
+  {
+    "usuario": "olivia",
+    "contraseña": "olivia123",
+    "email": "olivia@gmail.com"
   }
 ]
