@@ -2,37 +2,19 @@ import fs from "fs";
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 
 
-function iniciodesesion(usuario, password) {
-  const data = JSON.parse(fs.readFileSync("usuario.json", "utf-8"));
-  const usuarios = data.usuarios || data; // por si es array o tiene campo "usuarios"
+let password = fs.readFileSync ("data/usuario.json", "utf-8");
+let contraseña = JSON.parse(password);
 
-  let user = null;
-
-  for (let i = 0; i < usuarios.length; i++) {
-    if (usuarios[i].usuario === usuario) {
-      user = usuarios[i];
-      break;
-    }
-  }
-
-  if (!user) {
-    console.log("El nombre de usuario no existe");
-    return { ok: false, message: "El nombre de usuario no existe" };
-  }
-
-  if (user.password === password) {
-    console.log("Inicio de sesión correcto");
-    return { ok: true, message: "Inicio de sesión correcto" };
-  } else {
-    console.log("Contraseña incorrecta");
-    return { ok: false, message: "Contraseña incorrecta" };
-  }
-}
-
-subscribePOSTEvent("login", (data) => {
-  return iniciodesesion(data.usuario, data.password);
+subscribeGETEvent ( "contraseña", function (){
+  return contraseña;
 });
-// registro
+
+let user = fs.readFileSync ("data/usuario", "utf-8");
+let usuario = JSON.parse(user);
+
+subscribeGETEvent ( "usuario", function (){
+  return usuario;
+})
 
 subscribePOSTEvent("register", (data) => {
     let conectar = JSON.parse(fs.readFileSync("usuario.json", "utf-8"));

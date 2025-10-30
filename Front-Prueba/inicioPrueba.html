@@ -98,8 +98,11 @@
 
 
   <script>
-      startClient ("http://localhost:4000");
-    const respuesta = document.getElementById("respuesta");
+      startServer ("http://localhost:4000");
+
+      const usuariosContainer = document.getElementById("usuarios");
+const contraseña = document.getElementById("contraseña");
+  /*  const respuesta = document.getElementById("respuesta");
 
     // Evento: Login
     document.getElementById("btnLogin").onclick = async () => {
@@ -111,6 +114,7 @@
       const res = await soquet.postEvent("login", data);
       respuesta.textContent = res.error || res.msg;
     };
+    */
   </script>
 </body>
 </html>

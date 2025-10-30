@@ -75,35 +75,23 @@
     }
   },
   {
-    "usuario": "42",
-    "contraseña": "42",
-    "email": "42@gmail.com",
-    "keybindings": {
-      "up": "ArrowUp",
-      "down": "ArrowDown",
-      "left": "ArrowLeft",
-      "right": "ArrowRight"
-    }
+    "usuario": "jaja",
+    "contraseña": "jaja",
+    "email": "jaja@gmail.com"
   },
   {
-    "usuario": "mama",
-    "contraseña": "mama",
-    "email": "mama@gmail.com",
-    "keybindings": {
-      "up": "ArrowUp",
-      "down": "ArrowDown",
-      "left": "ArrowLeft",
-      "right": "ArrowRight"
-    }
+    "usuario": "jaja",
+    "contraseña": "jaja",
+    "email": "jaja@gmail.com"
   },
   {
-    "usuario": "pepe22",
-    "contraseña": "pepe22",
-    "email": "pepe22@gmail.com"
+    "usuario": "jaja",
+    "contraseña": "jaja",
+    "email": "jaja@gmail.com"
   },
   {
-    "usuario": "olivia",
-    "contraseña": "olivia123",
-    "email": "olivia@gmail.com"
+    "usuario": "555",
+    "contraseña": "555",
+    "email": "555@gmail.com"
   }
 ]

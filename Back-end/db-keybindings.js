@@ -1,6 +1,7 @@
 import fs from "fs";
+import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 
-const ARCHIVO = "keybindings-usuarios.json"; // archivo donde se guardan los datos
+const ARCHIVO = "Back-end/keybindings-usuarios.json"; // archivo donde se guardan los datos
 
 // 1) Leer el archivo si existe, o crear un array vacío
 let usuarios = [];

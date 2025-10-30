@@ -84,8 +84,7 @@
 
   <script>
 
-startClient("http://localhost:3000"); // debe coincidir con el puerto de tu server.js
-
+startServer("http://localhost:4000");
 // Luego, ejecutamos realTimeEvent cuando el usuario haga clic en el botón
 document.getElementById("guardar").addEventListener("click", () => {
   realTimeEvent("guardarKeybindings", {
