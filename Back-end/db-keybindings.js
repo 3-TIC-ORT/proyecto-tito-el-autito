@@ -1,135 +1,53 @@
-/*
-import fs from "fs/promises";
-import path from "path";
-import { fileURLToPath } from "url";
+import fs from "fs";
 
+const ARCHIVO = "keybindings-usuarios.json"; // archivo donde se guardan los datos
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const DB_PATH = path.join(__dirname, "data", "keybindings-lock.json");
-
-let usuarios = []
-
-async function loadUsuarios() {
-  try {
-    const data = await fs.readFile(DB_PATH, "utf8");
-    usuarios = JSON.parse(data);
-  } catch (err) {
-    console.error("");
-    usuarios = [];
-  }
-}
-await loadUsuarios ();
-async function saveUsuarios() {
-  try {
-    await fs.writeFile(DB_PATH, JSON.stringify(usuarios, null, 2));
-  } catch (error) {
-    console.error("Error al guardar usuarios:", error);
-  }
-}
-
-  const existingUser = usuarios.find(u => u.username === username);
-
-  if (existingUser) {
-    // Si ya existe, actualiza los datos
-    if (email) existingUser.email = email;
-    if (password) existingUser.password = password;
-    if (keybindings) existingUser.keybindings = keybindings;
-    
-  } else {
-    // Si no existe, crea uno nuevo
-    const nuevo = {
-      username,
-      email,
-      password,
-      keybindings : {
-        up: "W",
-        down: "S",
-        left: "A",
-        right: "D"
-      }
-    }; 
-     
-    };
-    usuarios.push(nuevo);
-  
-
-  await saveUsuarios();
-  return true;
-
-// Obtener usuario por nombre
-export function getUsuario(username) {
-  return usuarios.find(u => u.username === username);
-}
-  */
-import fs from "fs/promises";
-import path from "path";
-import { fileURLToPath } from "url";
-
-// Obtener ruta absoluta del archivo JSON
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const DB_PATH = path.join(__dirname, "data", "keybindings-usuarios.json"); // nombre correcto
-
+// 1) Leer el archivo si existe, o crear un array vacío
 let usuarios = [];
+let username = [];
 
-// ===============================
-// CARGAR USUARIOS AL INICIAR
-// ===============================
-async function loadUsuarios() {
-  try {
-    const data = await fs.readFile(DB_PATH, "utf8");
-    usuarios = JSON.parse(data);
-  } catch (err) {
-    console.error("No se pudo leer keybindings-usuarios.json. Se usará una lista vacía.");
-    usuarios = [];
-  }
-}
-await loadUsuarios();
 
-// ===============================
-// GUARDAR USUARIOS
-// ===============================
-async function saveUsuarios() {
-  try {
-    await fs.writeFile(DB_PATH, JSON.stringify(usuarios, null, 2));
-  } catch (error) {
-    console.error("Error al guardar usuarios:", error);
-  }
+
+try {
+  const data = fs.readFileSync(ARCHIVO, "utf-8");
+  usuarios = JSON.parse(data);
+} catch {
+  console.log("No se encontró keybindings-usuarios.json, se creará uno nuevo.");
+  usuarios = [];
+  
 }
 
-// ===============================
-// AGREGAR O ACTUALIZAR USUARIO
-// ===============================
-export async function addOrUpdateUsuario(username, email, password, keybindings) {
-  let existingUser = usuarios.find(u => u.username === username);
+// 2) Función para guardar el archivo actualizado
+function guardarUsuarios() {
+  const json = JSON.stringify(usuarios, null, 2); // 2 espacios para legibilidad
+  fs.writeFileSync(ARCHIVO, json);
+  console.log("Datos guardados correctamente en", ARCHIVO);
+}
 
-  if (existingUser) {
-    if (email) existingUser.email = email;
-    if (password) existingUser.password = password;
-    if (keybindings) existingUser.keybindings = keybindings;
+// 3) Agregar o actualizar los keybindings de un usuario
+export function guardarKeybindings(username, keybindings) {
+  const usuario = usuarios.find(u => u.username === username);
+
+  if (usuario) {
+    usuario.keybindings = keybindings; // si existe, actualiza
   } else {
-    const nuevo = {
+    usuarios.push({
       username,
-      email,
-      password,
-      keybindings: keybindings || {
-        up: "W",
-        down: "S",
-        left: "A",
-        right: "D"
+      keybindings : {
+      "Arriba" : "W",
+        "Abajo" : "S",
+        "Izquierda" : "A",
+        "Derecha" : "D"
+
       }
-    };
-    usuarios.push(nuevo);
+    });
   }
 
-  await saveUsuarios();
-  return true;
+  guardarUsuarios();
 }
 
-// ===============================
-// OBTENER USUARIO POR NOMBRE
-// ===============================
-export function getUsuario(username) {
-  return usuarios.find(u => u.username === username);
+// 4) Obtener los keybindings de un usuario
+export function obtenerKeybindings(username) {
+  const usuario = usuarios.find(u => u.username === username);
+  return usuario ? usuario.keybindings : null;
 }
