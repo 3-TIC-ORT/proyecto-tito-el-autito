@@ -68,8 +68,6 @@
   <h1>Configuración de Teclas</h1>
   <form id="keyForm">
     <input type="text" id="username" placeholder="Nombre de usuario" required>
-    <input type="email" id="email" placeholder="Correo electrónico">
-    <input type="password" id="password" placeholder="Contraseña">
 
     <div class="key-group">
       <label>Arriba:</label> <input type="text" id="up" maxlength="1" placeholder="Ej: W" required>
@@ -92,8 +90,6 @@ startClient("http://localhost:3000"); // debe coincidir con el puerto de tu serv
 document.getElementById("guardar").addEventListener("click", () => {
   realTimeEvent("guardarKeybindings", {
     usuario: "olivia",
-    password: "olivia123",
-    email: "olivia@gmail.com",
     keybindings: {
       up: "W",
       down: "S",
@@ -109,13 +105,11 @@ document.getElementById("guardar").addEventListener("click", () => {
 
     function mandar(){
         let  usuario = document.getElementById("usuario").value
-        let email= document.getElementById("email").value
-        let password = document.getElementById("password").value
         let arriba = document.getElementById("avanzar").value
         let abajo = document.getElementById("retroceso").value
         let Izquierda = document.getElementById("girar a la izquierda").value
         let Derecha = docuument.getElementById("girar a la derecha").value
-  postEvent("keybindings", {usuario, password, email, keybindings} );
+  postEvent("keybindings", {usuario, keybindings} );
 }
     let boton = document.getElementById("submit")
     boton.addEventListener("click", mandar)

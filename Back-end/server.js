@@ -3,48 +3,43 @@ import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } fro
 
 
 function iniciodesesion(usuario, password) {
-  let conectar = JSON.parse(fs.readFileSync("usuario.json", "utf-8"));
-  
+  const data = JSON.parse(fs.readFileSync("usuario.json", "utf-8"));
+  const usuarios = data.usuarios || data; // por si es array o tiene campo "usuarios"
 
+  let user = null;
 
-  let user = "";
-
-
-  for (let i = 0; i < conectar.length; i++) {
-    if (conectar[i].usuario === usuario) {
-      user = conectar[i];
-      break;              
+  for (let i = 0; i < usuarios.length; i++) {
+    if (usuarios[i].usuario === usuario) {
+      user = usuarios[i];
+      break;
     }
   }
 
-
   if (!user) {
-    return "El nombre de usuario no existe";
+    console.log("El nombre de usuario no existe");
+    return { ok: false, message: "El nombre de usuario no existe" };
   }
-
 
   if (user.password === password) {
-    return "Inicio de sesión correcto";
+    console.log("Inicio de sesión correcto");
+    return { ok: true, message: "Inicio de sesión correcto" };
   } else {
-    return "Contraseña incorrecta";
+    console.log("Contraseña incorrecta");
+    return { ok: false, message: "Contraseña incorrecta" };
   }
 }
-
-
-
 
 subscribePOSTEvent("login", (data) => {
   return iniciodesesion(data.usuario, data.password);
 });
-
-
+// registro
 
 subscribePOSTEvent("register", (data) => {
     let conectar = JSON.parse(fs.readFileSync("usuario.json", "utf-8"));
 
     for (let i = 0; i < conectar.length; i++) {
         if (conectar[i].usuario === data.usuario) {
-            return "El usuario ya existe"; 
+            console.log ("El usuario ya existe"); 
         }
     }
     
@@ -61,7 +56,7 @@ subscribePOSTEvent("register", (data) => {
     fs.writeFileSync("usuario.json", JSON.stringify(conectar, null, 2), "utf-8");
     
 
-    return "Usuario registrado correctamente"; 
+    console.log ("Usuario registrado correctamente"); 
 });
 
 function keybindings(usuario, keybindings) {

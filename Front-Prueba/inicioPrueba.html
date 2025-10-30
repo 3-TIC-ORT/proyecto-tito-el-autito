@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script src="server.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Iniciar Sesión</title>
@@ -90,11 +95,10 @@
     <p class="registro-link">¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
   </main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+
 
   <script>
-      const soquet = new SoqueTIC("http://localhost:4000");
+      startClient ("http://localhost:4000");
     const respuesta = document.getElementById("respuesta");
 
     // Evento: Login
