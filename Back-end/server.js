@@ -2,19 +2,23 @@ import fs from "fs";
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 
 
-let password = fs.readFileSync ("data/usuario.json", "utf-8");
-let contraseña = JSON.parse(password);
+subscribePOSTEvent("login", ({ contraseña }) => {
+  let objok = { ok: false };
+  let datosDeUsuario = JSON.parse(fs.readFileSync("data/usuarios.json", "utf-8"));
 
-subscribeGETEvent ( "contraseña", function (){
-  return contraseña;
+  for (let i = 0; i < datosDeUsuario.length; i++) {
+    if (datosDeUsuario[i].contraseña === contraseña) {
+      objok = {
+        ok: true,
+        id: datosDeUsuario[i].id,
+        usuario: datosDeUsuario[i].usuario
+      };
+      break;
+    }
+  }
+
+  return objok;
 });
-
-let user = fs.readFileSync ("data/usuario", "utf-8");
-let usuario = JSON.parse(user);
-
-subscribeGETEvent ( "usuario", function (){
-  return usuario;
-})
 
 subscribePOSTEvent("register", (data) => {
     let conectar = JSON.parse(fs.readFileSync("usuario.json", "utf-8"));
