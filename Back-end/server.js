@@ -42,7 +42,7 @@ subscribePOSTEvent("register", (data) => {
     fs.writeFileSync("usuario.json", JSON.stringify(conectar, null, 2), "utf-8");
     
 
-    console.log ("Usuario registrado correctamente"); 
+    return ("Usuario registrado correctamente"); 
 });
 
 function keybindings(usuario, keybindings) {
