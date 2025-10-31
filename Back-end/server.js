@@ -2,108 +2,65 @@ import fs from "fs";
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 
 
-subscribePOSTEvent("login", ({ contraseña }) => {
-  let objok = { ok: false };
-  let datosDeUsuario = JSON.parse(fs.readFileSync("data/usuarios.json", "utf-8"));
+subscribePOSTEvent("login", (data) => {
+    let conectar = JSON.parse(fs.readFileSync("usuario.json", "utf-8"));
+    let encontro = false;
+    let mensaje = "El Usuario no existe.";
 
-  for (let i = 0; i < datosDeUsuario.length; i++) {
-    if (datosDeUsuario[i].contraseña === contraseña) {
-      objok = {
-        ok: true,
-        id: datosDeUsuario[i].id,
-        usuario: datosDeUsuario[i].usuario
-      };
-      break;
+    for (let i = 0; i < conectar.length; i++) 
+    {   
+        if (conectar[i].usuario == data.usuario) 
+        {
+            if (conectar[i].password == data.password) 
+            {
+
+              console.log ("El usuario ya existe"); 
+              encontro = true;
+              mensaje = "El usuario existe.";
+            }   
+            
+        }
     }
-  }
 
-  return objok;
+    return mensaje; 
 });
 
 subscribePOSTEvent("register", (data) => {
     let conectar = JSON.parse(fs.readFileSync("usuario.json", "utf-8"));
+    let encontro = false;
+    let mensaje = "Usuario registrado correctamente.";
 
-    for (let i = 0; i < conectar.length; i++) {
-        if (conectar[i].usuario === data.usuario) {
+    for (let i = 0; i < conectar.length; i++) 
+    {
+        if (conectar[i].usuario === data.usuario) 
+        {
             console.log ("El usuario ya existe"); 
+            encontro = true;
+            mensaje = "El usuario ya existe.";
         }
     }
     
-
-    const nuevoUsuario = { 
-        usuario: data.usuario, 
-        contraseña: data.password, 
-        email: data.email 
-    };
-    
-    conectar.push(nuevoUsuario);
-    
+    if (!encontro)
+    {
+        const nuevoUsuario = { 
+            usuario: data.usuario, 
+            contraseña: data.password, 
+            email: data.email 
+        };
+      
+        conectar.push(nuevoUsuario);
+    }
 
     fs.writeFileSync("usuario.json", JSON.stringify(conectar, null, 2), "utf-8");
-    
-
-    return ("Usuario registrado correctamente"); 
-});
-
-function keybindings(usuario, keybindings) {
-  let conectar = JSON.parse(fs.readFileSync("keybindings-usuarios.json", "utf-8"));
-startServer(3000, true);
-
-// arranca keybindings
-let user = "";
 
 
-  for (let i = 0; i < conectar.length; i++) {
-    if (conectar[i].usuario === usuario) {
-      user = conectar[i];
-      break;              
-    }
-  }
-
-
-
-}
-
-
-
-
-subscribePOSTEvent("keybindings", (data) => {
-  return keybindings(data.usuario, data.keybindings);
+    return mensaje; 
 });
 
 
 
-subscribePOSTEvent("keybindings", (data) => {
-    let conectar = JSON.parse(fs.readFileSync("keybindings-usuarios.json", "utf-8"));
 
-    const user = conectar.find(u => u.username === usuario);
 
-    if (!user) return "Usuario no encontrado";
 
-    // Si no tenía keybindings previos, los crea
-    if (!user.keybindings) {
-      user.keybindings = {};
-    } 
-    
-    user.keybindings = { ...user.keybindings, ...keybindings };
-
-    const nuevoUsuario = { 
-        usuario: data.usuario,     
-        keybindings : {
-          up: "W",
-          down: "S",
-          left: "A",
-          right: "D"
-        }
-    };
-    
-    conectar.push(nuevoUsuario);
-    
-
-    fs.writeFileSync("./data/key.json", JSON.stringify(conectar, null, 2), "utf-8");
-    
-
-    return "Usuario registrado correctamente"; 
-});
 startServer(3000, true);
 

@@ -1,113 +1,17 @@
 [
   {
-    "usuario": "23833022",
-    "contraseña": "5432",
+    "usuario": "seba",
+    "contraseña": "123",
     "email": "sebalaburo@hotmail.com"
   },
   {
-    "usuario": "lenny",
-    "contraseña": "lenny123",
-    "email": "lenny@gmail.com"
-  },
-  {
-    "usuario": "shuli",
-    "contraseña": "shuli987",
-    "email": "shuli@gmail.com"
-  },
-  {
-    "usuario": "caca",
-    "contraseña": "caca6",
-    "email": "49759146@est.ort.edu.ar"
-  },
-  {
-    "usuario": "tania",
-    "contraseña": "taniaL",
-    "email": "tania@gmail.com",
-    "keybindings": {
-      "up": "ArrowUp",
-      "down": "ArrowDown",
-      "left": "ArrowLeft",
-      "right": "ArrowRight"
-    }
-  },
-  {
-    "usuario": "jaja",
-    "contraseña": "jaja",
-    "email": "jaja@gmail.com",
-    "keybindings": {
-      "up": "ArrowUp",
-      "down": "ArrowDown",
-      "left": "ArrowLeft",
-      "right": "ArrowRight"
-    }
-  },
-  {
-    "usuario": "12345",
-    "contraseña": "12345",
-    "email": "12345@gmail.com",
-    "keybindings": {
-      "up": "ArrowUp",
-      "down": "ArrowDown",
-      "left": "ArrowLeft",
-      "right": "ArrowRight"
-    }
-  },
-  {
-    "usuario": "0987",
-    "contraseña": "098",
-    "email": "0987@gmail.com",
-    "keybindings": {
-      "up": "ArrowUp",
-      "down": "ArrowDown",
-      "left": "ArrowLeft",
-      "right": "ArrowRight"
-    }
-  },
-  {
-    "usuario": "lala",
-    "contraseña": "lala",
-    "email": "lala@gmail.com",
-    "keybindings": {
-      "up": "ArrowUp",
-      "down": "ArrowDown",
-      "left": "ArrowLeft",
-      "right": "ArrowRight"
-    }
-  },
-  {
-    "usuario": "jaja",
-    "contraseña": "jaja",
-    "email": "jaja@gmail.com"
-  },
-  {
-    "usuario": "jaja",
-    "contraseña": "jaja",
-    "email": "jaja@gmail.com"
-  },
-  {
-    "usuario": "jaja",
-    "contraseña": "jaja",
-    "email": "jaja@gmail.com"
-  },
-  {
-    "usuario": "555",
-    "contraseña": "555",
-    "email": "555@gmail.com"
-  },
-  {
-    "usuario": "dnmdasnjdsa"
-  },
-  {
-    "usuario": "ndasjdj"
-  },
-  {
-    "usuario": "ndasjdsaj",
-    "contraseña": "123",
-    "email": "dsada@jdsaj"
-  },
-  {
     "usuario": "oli",
-    "contraseña": "1",
-    "email": "oli@oli"
+    "contraseña": "333",
+    "email": "flevene@gmail.com"
+  },
+  {
+    "usuario": "flor",
+    "contraseña": "123",
+    "email": "dsblum@gmail.com"
   }
 ]

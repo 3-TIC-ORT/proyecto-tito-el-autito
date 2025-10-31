@@ -90,8 +90,10 @@
         let  usuario = document.getElementById("usuario").value
         let email= document.getElementById("email").value
         let password = document.getElementById("password").value
-  postEvent("register", {usuario, password, email} );
-}
+        
+        postEvent("register", {usuario, password, email} );
+    }
+    
     let boton = document.getElementById("submit")
     boton.addEventListener("click", mandar)
 

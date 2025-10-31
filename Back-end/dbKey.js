@@ -14,7 +14,7 @@ async function loadUsuarios() {
     usuarios = JSON.parse(data);
   } catch (err) {
     console.error("No se pudo leer usuario.json. Se usará una lista vacía.");
-    usuarios = [];
+    username = [];
   }
 }
 await loadUsuarios ();
@@ -39,8 +39,8 @@ export async function addUsuario(username, keybindings) {
   } else {
     // Si no existe, crea uno nuevo
     const nuevo = {
-      username,
-      keybindings
+      username: data.username,
+      keybindings: data.keybindings
      
     };
     usuarios.push(nuevo);
@@ -48,7 +48,7 @@ export async function addUsuario(username, keybindings) {
 
   await saveUsuarios();
   return true;
-  alert(mensaje)
+
 }
 
 // Obtener usuario por nombre
