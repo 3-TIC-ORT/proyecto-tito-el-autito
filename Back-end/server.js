@@ -88,9 +88,7 @@ subscribePOSTEvent("keybindings", (data) => {
     user.keybindings = { ...user.keybindings, ...keybindings };
 
     const nuevoUsuario = { 
-        usuario: data.usuario, 
-        password: data.password,
-        email: data.email,        
+        usuario: data.usuario,     
         keybindings : {
           up: "W",
           down: "S",
@@ -102,7 +100,7 @@ subscribePOSTEvent("keybindings", (data) => {
     conectar.push(nuevoUsuario);
     
 
-    fs.writeFileSync("./data/keybindings-usuarios.json", JSON.stringify(conectar, null, 2), "utf-8");
+    fs.writeFileSync("./data/key.json", JSON.stringify(conectar, null, 2), "utf-8");
     
 
     return "Usuario registrado correctamente"; 

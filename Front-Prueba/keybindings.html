@@ -84,7 +84,9 @@
 
   <script>
 
-startServer("http://localhost:4000");
+connect2Server
+const resultado = document.getElementById("respuesta");
+
 // Luego, ejecutamos realTimeEvent cuando el usuario haga clic en el botón
 document.getElementById("guardar").addEventListener("click", () => {
   realTimeEvent("guardarKeybindings", {
