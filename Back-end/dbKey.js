@@ -1,24 +1,27 @@
-import fs from "fs";
-import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
-
-    let conectar = JSON.parse(fs.readFileSync("key.json", "utf-8"));
-let usuarios = [];
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DB_PATH = path.join(__dirname, "data", "key.json");
 
+// Array en memoria
+let keybinding = [];
+
+// Cargar usuarios al iniciar
 async function loadUsuarios() {
   try {
     const data = await fs.readFile(DB_PATH, "utf8");
-    usuarios = JSON.parse(data);
+    keybinding = JSON.parse(data);
   } catch (err) {
     console.error("No se pudo leer usuario.json. Se usará una lista vacía.");
-    username = [];
+    usuarios = [];
   }
 }
-await loadUsuarios ();
+await loadUsuarios();
 
+// Guardar usuarios en disco
 async function saveUsuarios() {
   try {
     await fs.writeFile(DB_PATH, JSON.stringify(usuarios, null, 2));
@@ -27,20 +30,21 @@ async function saveUsuarios() {
   }
 }
 
-
-export async function addUsuario(username, keybindings) {
+// Agregar o actualizar usuario
+export async function addUsuario(username, email, password) {
   const existingUser = usuarios.find(u => u.username === username);
 
   if (existingUser) {
     // Si ya existe, actualiza los datos
-    if (keybindings) existingUser.keybindings = keybindings;
-  
+    if (email) existingUser.email = email;
+    if (password) existingUser.password = password;
     
   } else {
     // Si no existe, crea uno nuevo
     const nuevo = {
-      username: data.username,
-      keybindings: data.keybindings
+      username,
+      email,
+      password
      
     };
     usuarios.push(nuevo);
@@ -48,7 +52,6 @@ export async function addUsuario(username, keybindings) {
 
   await saveUsuarios();
   return true;
-
 }
 
 // Obtener usuario por nombre

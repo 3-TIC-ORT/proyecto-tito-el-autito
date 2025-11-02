@@ -1,119 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script src="db-keybindings.js"></script>
- 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Configurar Teclas</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background-color: #f4f4f4;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurar Teclas</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
 
-    h1 {
-      color: #333;
-    }
+        h1 {
+            color: #333;
+        }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.2);
-    }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.2);
+        }
 
-    input, button {
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
+        input, button {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
 
-    button {
-      cursor: pointer;
-      background-color: #007bff;
-      color: white;
-      font-weight: bold;
-    }
+        button {
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
 
-    .key-group {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
+        .key-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
 
-    label {
-      font-weight: bold;
-    }
+        label {
+            font-weight: bold;
+        }
 
-    #resultado {
-      margin-top: 20px;
-      color: green;
-      font-weight: bold;
-    }
-  </style>
+        #resultado {
+            margin-top: 20px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <h1>Configuración de Teclas</h1>
-  <form id="keyForm">
-    <input type="text" id="username" placeholder="Nombre de usuario" required>
+    <h1>Configuración de Teclas</h1>
+    <main>
+        <form id="registroForm">
+            <input type="text" id="usuario" placeholder="Nombre de usuario" required>
+            <input type="text" id="up" placeholder="Avanzar" required>
+            <input type="text" id="down" placeholder="Retroceder" required>
+            <input type="text" id="left" placeholder="Izquierda" required>
+            <input type="text" id="right" placeholder="Derecha" required>
+            <button type="submit">Guardar configuración</button>
+        </form>
+        <p class="mensaje" id="mensaje"></p>
+    </main>
 
-    <div class="key-group">
-      <label>Arriba:</label> <input type="text" id="up" maxlength="1" placeholder="Ej: W" required>
-      <label>Abajo:</label> <input type="text" id="down" maxlength="1" placeholder="Ej: S" required>
-      <label>Izquierda:</label> <input type="text" id="left" maxlength="1" placeholder="Ej: A" required>
-      <label>Derecha:</label> <input type="text" id="right" maxlength="1" placeholder="Ej: D" required>
-    </div>
+    <div id="resultado"></div>
 
+    <script>
+        // 1. Inicializa la conexión al servidor (asumiendo que es necesaria)
+        connect2Server()
 
-    <button type="submit">Guardar configuración</button>
-  </form>
+        // 2. Obtiene el formulario (elemento HTML) por su ID
+        const formulario = document.getElementById("registroForm");
+        
+        // La variable 'respuesta' no se está usando, pero la mantengo si la planeas usar
+        // const respuesta = document.getElementById("respuesta");
 
-  <div id="resultado"></div>
-
-  <script>
-
-
-
-// Luego, ejecutamos realTimeEvent cuando el usuario haga clic en el botón
-document.getElementById("guardar").addEventListener("click", () => {
-  realTimeEvent("guardarKeybindings", {
-    usuario: "olivia",
-    keybindings: {
-      avanzar: "W",
-      retroceder: "S",
-      derecha: "D",
-      izquierda: "A"
-    }
-  })
-
-});
-
-    connect2Server()
-    const respuesta = document.getElementById("respuesta");
-
-    function mandar(){
-        let  usuario = document.getElementById("usuario").value
-        let arriba = document.getElementById("avanzar").value
-        let abajo = document.getElementById("retroceso").value
-        let Izquierda = document.getElementById("girar a la izquierda").value
-        let Derecha = docuument.getElementById("girar a la derecha").value
-  postEvent("keybindings", {usuario, keybindings} );
-}
-    let boton = document.getElementById("submit")
-    boton.addEventListener("click", mandar)
-  
-  </script>
+        function mandar(event){
+            // 3. IMPORANTE: Previene el comportamiento por defecto del formulario (recargar la página)
+            event.preventDefault(); 
+            
+            // 4. Obtener valores con los IDs CORRECTOS (up, down, left, right)
+            let usuario = document.getElementById("usuario").value;
+            let avanzar = document.getElementById("up").value; // Corregido de 'avanzar' a 'up'
+            let retroceder = document.getElementById("down").value; // Corregido de 'retroceso' a 'down'
+            let izquierda = document.getElementById("left").value; // Corregido de 'girar a la izquierda' a 'left'
+            let derecha = document.getElementById("right").value; // Corregido de 'girar a la derecha' a 'right'
+            alert(izquierda);
+            // 5. Enviar el evento
+            postEvent("keybinding", {usuario, avanzar, retroceder, izquierda, derecha} );
+        } 
+        
+        // 6. Adjuntar el listener al evento 'submit' del formulario
+        formulario.addEventListener("submit", mandar);
+    
+    </script>
 </body>
 </html>

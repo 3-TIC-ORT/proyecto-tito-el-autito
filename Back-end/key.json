@@ -1,3 +1,29 @@
 [
-
+  {
+    "usuario": "seba",
+    "keybindings": {
+      "avanzar": "1",
+      "retroceder": "2",
+      "derecha": "3",
+      "izquierda": "4"
+    }
+  },
+  {
+    "usuario": "oli",
+    "keybindings": {
+      "avanzar": "s",
+      "retroceder": "o",
+      "derecha": "e",
+      "izquierda": "r"
+    }
+  },
+  {
+    "usuario": "ursu",
+    "keybindings": {
+      "avanzar": "n",
+      "retroceder": "p",
+      "derecha": "i",
+      "izquierda": "o"
+    }
+  }
 ]
