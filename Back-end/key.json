@@ -25,5 +25,14 @@
       "derecha": "i",
       "izquierda": "o"
     }
+  },
+  {
+    "usuario": "ubita",
+    "keybindings": {
+      "avanzar": "U",
+      "retroceder": "J",
+      "derecha": "K",
+      "izquierda": "H"
+    }
   }
 ]

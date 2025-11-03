@@ -56,62 +56,9 @@ subscribePOSTEvent("register", (data) => {
 
     return mensaje; 
 });
-/*
-subscribePOSTEvent("keybinding", (data) => {
-    let conectar = JSON.parse(fs.readFileSync("key.json", "utf-8"));
-    let encontro = false;
-    let mensaje = "Keybinding registrado correctamente.";
 
-    for (let i = 0; i < conectar.length; i++) 
-    {
-        if (conectar[i].usuario === data.usuario) 
-        {
-            console.log ("El Keybinding ya existe"); 
-            encontro = true;
-            mensaje = "El Keybinding ya existe.";
-        }
-    }
-    
-    if (encontro)
-    {
-        console.log ("ENCONTRO"); 
-        const existingUser = conectar.find(u => u.usuario === data.usuario);
+// arranca keybinding
 
-        if (existingUser) {
-            console.log ("Si ya existe, actualiza los datos"); 
-            // Si ya existe, actualiza los datos
-            
-            existingUser.keybindings.arriba = data.arriba;
-            existingUser.keybindings.abajo = data.abajo;
-            existingUser.keybindings.derecha = data.derecha;
-            existingUser.keybindings.izquierda = data.izquierda;
-
-           
-        } 
-    }
-    else
-    {
-        console.log ("SELSE"); 
-        const nuevoKeybinding = { 
-            usuario: data.usuario, 
-            keybindings: {
-                arriba: data.arriba,
-                abajo: data.abajo,
-                derecha: data.derecha,
-                izquierda: data.izquierda
-            } 
-        };
-      
-        conectar.push(nuevoKeybinding);
-    }
-
-    fs.writeFileSync("key.json", JSON.stringify(conectar, null, 2), "utf-8");
-
-
-    return mensaje; 
-});
-
-*/
 subscribePOSTEvent("keybinding", (data) => {
     // Nota: Asumiendo que 'fs' (File System) ya está requerido en este archivo de Node.js.
     // const fs = require('fs'); 
@@ -162,6 +109,73 @@ subscribePOSTEvent("keybinding", (data) => {
 });
 
 
+// arranca arduino
+
+import { SerialPort, ReadlineParser } from "serialport";
+
+//puerto serial
+const port = new SerialPort({
+  path: "COM5", 
+  baudRate: 9600, 
+});
+
+const parser = new ReadlineParser({ delimiter: "\n" });
+port.pipe(parser);
+
+port.on("open", () => {
+  console.log(" Puerto serial abierto con Arduino");
+});
+
+
+//mensajes desde el arduino
+parser.on("data", (data) => {
+  const mensaje = data.toString().trim();
+  console.log(" Mensaje recibido del Arduino:", mensaje);
+
+  if (mensaje === "COLISION") {
+    console.log(" Sensor de choque activado");
+    realTimeEvent("sensorChoque", { estado: "impacto detectado" });
+  } 
+  else {
+    realTimeEvent("estadoAuto", { mensaje });
+  }
+});
+
+const commands = {
+  avanzar: "adelante\n",
+  retroceder: "atras\n",
+  izquierda: "izquierda\n",
+  derecha: "derecha\n",
+  parar: "parar\n",
+};
+
+//mover el auto
+subscribePOSTEvent("moverAuto", (data) => {
+  const { direccion } = data; 
+  console.log(` Movimiento solicitado: ${direccion}`);
+
+  const signal = commands[direccion];
+  if (!signal) {
+    console.log(" Comando desconocido:", direccion);
+    return { status: "Comando no reconocido" };
+  }
+
+
+  port.write(signal, (err) => {
+    if (err) {
+      console.error(" Error al enviar al Arduino:", err.message);
+    } else {
+      console.log(` Enviado al Arduino: ${signal}`);
+    }
+  });
+
+  realTimeEvent("movimientoAuto", { direccion });
+
+  return { status: "Movimiento enviado al Arduino" };
+});
+
 
 startServer(3000, true);
+console.log(" Servidor corriendo en puerto 3000");
+
 

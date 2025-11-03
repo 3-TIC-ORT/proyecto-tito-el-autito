@@ -3,7 +3,7 @@ import { SerialPort, ReadlineParser } from "serialport";
 
 //puerto serial
 const port = new SerialPort({
-  path: "COM3", 
+  path: "COM5", 
   baudRate: 9600, 
 });
 
@@ -28,6 +28,14 @@ parser.on("data", (data) => {
     realTimeEvent("estadoAuto", { mensaje });
   }
 });
+
+const commands = {
+  avanzar: "adelante\n",
+  retroceder: "atras\n",
+  izquierda: "izquierda\n",
+  derecha: "derecha\n",
+  parar: "parar\n",
+};
 
 //mover el auto
 subscribePOSTEvent("moverAuto", (data) => {
@@ -55,5 +63,8 @@ subscribePOSTEvent("moverAuto", (data) => {
 });
 
 //inicio del servidor
+
+
 startServer(3000);
 console.log(" Servidor corriendo en puerto 3000");
+ 

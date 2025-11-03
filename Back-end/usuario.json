@@ -18,5 +18,15 @@
     "usuario": "chota",
     "contraseña": "2",
     "email": "sebalaburo@hotmail.com"
+  },
+  {
+    "usuario": "pepe",
+    "contraseña": "",
+    "email": ""
+  },
+  {
+    "usuario": "ubita",
+    "contraseña": "ubitas",
+    "email": "uba@gmail.com"
   }
 ]
