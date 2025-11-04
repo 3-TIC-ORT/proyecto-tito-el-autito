@@ -15,18 +15,23 @@
     "email": "dsblum@gmail.com"
   },
   {
-    "usuario": "chota",
-    "contraseña": "2",
-    "email": "sebalaburo@hotmail.com"
-  },
-  {
-    "usuario": "pepe",
-    "contraseña": "",
-    "email": ""
-  },
-  {
     "usuario": "ubita",
     "contraseña": "ubitas",
     "email": "uba@gmail.com"
+  },
+  {
+    "usuario": "sebas",
+    "contraseña": "11",
+    "email": "sebalaburo@hotmail.com"
+  },
+  {
+    "usuario": "dedede",
+    "contraseña": "ee",
+    "email": "sebalaburo@hotmail.com"
+  },
+  {
+    "usuario": "flora",
+    "contraseña": "333",
+    "email": "sebalaburo@hotmail.com"
   }
 ]

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar Sesión</title>
-
-  
+  <title>Movimiento</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -60,58 +59,43 @@
       margin-top: 10px;
       font-weight: bold;
     }
-
-    .registro-link {
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: white;
-    }
-
-    .registro-link a {
-      color: #ffeaa7;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .registro-link a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
-
+  
   <header>
-    <h1>Iniciar Sesión</h1>
+    <h1>Movimiento</h1>
   </header>
 
   <main>
-    <form id="loginForm">
+    <form id="registroForm">
       <input type="text" id="usuario" placeholder="Nombre de usuario" required>
-      <input type="password" id="password" placeholder="Contraseña" required>
-      <button id="submit">Ingresar</button>
+      <input type="text" id="tecla" placeholder="Tecla" required>
+     
+      <button id="submit">Movimiento</button>
     </form>
-
     <p class="mensaje" id="mensaje"></p>
-    <p class="registro-link">¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
   </main>
 
 
 
   <script>
+    
+    connect2Server()
+    const respuesta = document.getElementById("respuesta");
 
-      connect2Server()
-      const respuesta = document.getElementById("respuesta");
- 
-      function mandarlogin(){
+    function mandar(){
+        let  usuario = document.getElementById("usuario").value
+        let tecla= document.getElementById("tecla").value
+        
+        postEvent("movimiento", {usuario, tecla} );
+    }
+    
+    let boton = document.getElementById("submit")
+    boton.addEventListener("click", mandar)
 
-          let  usuario = document.getElementById("usuario").value
-          let password = document.getElementById("password").value
 
-          postEvent("login", {usuario, password} );
-      }
-      
-      let boton = document.getElementById("submit")
-      boton.addEventListener("click", mandarlogin)
+     
 
   </script>
 </body>

@@ -3,7 +3,7 @@ import { SerialPort, ReadlineParser } from "serialport";
 
 //puerto serial
 const port = new SerialPort({
-  path: "COM5", 
+  path: "COM7", 
   baudRate: 9600, 
 });
 
