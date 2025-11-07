@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (respuesta === "El usuario existe." || respuesta === "Inicio de sesión exitoso.") {
         alert("¡Bienvenido!");
-        window.location.href = "home.html";
+        window.location.href = "../iinicio/index.html";
       } else {
         alert(respuesta === "Error");
       }

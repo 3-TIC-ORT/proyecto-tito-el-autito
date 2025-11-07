@@ -6,7 +6,9 @@ function iniciarSesion() {
 
     postEvent("register", { usuario, email:Email, password:contraseña }, (respuesta) => {
         alert(respuesta);
+        window.location.href = "../iinicio/index.html";
     })
 }
 let boton = document.getElementById("submit")
     boton.addEventListener("click", iniciarSesion)
+    
