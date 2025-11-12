@@ -48,5 +48,10 @@
     "usuario": "santi",
     "contraseña": "1234",
     "email": "santi@gmail.com"
+  },
+  {
+    "usuario": "roberto",
+    "contraseña": "hhh",
+    "email": "raphaello.genin@gmail.com"
   }
 ]

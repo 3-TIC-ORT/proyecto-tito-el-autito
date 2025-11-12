@@ -4,11 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
   botonConectar.addEventListener("click", () => {
     const usuario = localStorage.getItem("usuario");
 
-    if (!usuario) {
-      location.reload();
+    if (usuario != "null") {
+      window.location.href = "../inicio sesion/inicioSesion.html";
     } else {
       console.log("Usuario iniciado:", usuario);
-      window.location.href = "index.html";
+      window.location.href = "../keybindings/keybindings.html";
     }
   });
 });
