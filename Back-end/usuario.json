@@ -43,5 +43,10 @@
     "usuario": "avi",
     "contraseña": "1111",
     "email": "nalika@gmail.comm"
+  },
+  {
+    "usuario": "santi",
+    "contraseña": "1234",
+    "email": "santi@gmail.com"
   }
 ]

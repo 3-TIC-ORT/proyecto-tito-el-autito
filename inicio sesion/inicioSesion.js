@@ -1,4 +1,5 @@
-connect2Server(3000);
+connect2Server();
+
 document.addEventListener("DOMContentLoaded", () => {
   const btnLogin = document.getElementById("btnLogin");
 
@@ -16,11 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
     postEvent("login", { usuario, password: contraseña }, (respuesta) => {
       console.log("Respuesta del servidor:", respuesta);
 
-      if (respuesta === "El usuario existe." || respuesta === "Inicio de sesión exitoso.") {
+      if (respuesta === "OK" || respuesta === "El usuario existe." || respuesta === "Inicio de sesión exitoso.") {
         alert("¡Bienvenido!");
-        window.location.href = "../iinicio/index.html";
+        localStorage.setItem("usuario", usuario); 
+        window.location.href = "../iinicio/inicio.html";
       } else {
-        alert(respuesta === "Error");
+        alert("Usuario o contraseña incorrectos");
       }
     });
   });
