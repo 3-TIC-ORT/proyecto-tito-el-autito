@@ -1,13 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="keybindings.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Configuración</title>
+  <link rel="stylesheet" href="./keybindings.css">
 </head>
 <body>
-    <h1> hola mundo </h1>
+
+  <!-- Barra superior -->
+  <div class="header">
+    <button class="btn-exit">Exit</button>
+    <h1 class="title">CONFIGURACIÓN DE BOTONES</h1>
+    <button class="btn-save">Guardar</button>
+  </div>
+
+  <!-- Contenedores (4 cajas) -->
+  <div class="container">
+    <div class="box">
+      <h2>Adelante</h2>
+      <button class="btn-change" onclick="toggleInput('inputAdelante')">Cambiar</button>
+      <input id="inputAdelante" class="inputKey" type="text" placeholder="Nueva tecla">
+    </div>
+
+    <div class="box">
+      <h2>Izquierda</h2>
+      <button class="btn-change" onclick="toggleInput('inputIzquierda')">Cambiar</button>
+      <input id="inputIzquierda" class="inputKey" type="text" placeholder="Nueva tecla">
+    </div>
+
+    <div class="box">
+      <h2>Derecha</h2>
+      <button class="btn-change" onclick="toggleInput('inputDerecha')">Cambiar</button>
+      <input id="inputDerecha" class="inputKey" type="text" placeholder="Nueva tecla">
+    </div>
+
+    <div class="box">
+      <h2>Retroceder</h2>
+      <button class="btn-change" onclick="toggleInput('inputRetroceder')">Cambiar</button>
+      <input id="inputRetroceder" class="inputKey" type="text" placeholder="Nueva tecla">
+    </div>
+  </div>
+  <script src="./keybindings.js"></script>
+
 </body>
 </html>

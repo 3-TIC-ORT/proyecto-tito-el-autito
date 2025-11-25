@@ -1,6 +1,97 @@
-main {
-    background-image: url(file:///C:/Users/49697657/Documents/auto.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
+body {
+    background: #000;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
     
-}
+    background-image: url(../img/pantalla\ de\ configuracion-2.jpg);
+    background-size: cover;
+    margin: 0;
+  }
+  
+  /* Imagen de arriba */
+  .image-top img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Header con EXIT y GUARDAR */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 40px;
+    margin-top: -20px;
+  }
+  
+  .btn-exit, .btn-save {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  
+  .title {
+    font-size: 50px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px white;
+  }
+  
+  /* Contenedores de abajo (4 cajas) */
+  .container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 140px;    /* Baja las cajas como en la imagen */
+  }
+  
+  .box {
+    width: 230px;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 150px;
+    backdrop-filter: blur(4px);
+  }
+  
+  .box h2 {
+    margin-bottom: 18px;
+    font-size: 22px;
+    font-weight: 700;
+    text-shadow: 0 0 10px #fff;
+  }
+  
+  .btn-change {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.6);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* Input que aparece al tocar CAMBIAR */
+  .inputKey {
+    margin-top: 15px;
+    display: none;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    width: 130px;
+    text-align: center;
+  }
+  
