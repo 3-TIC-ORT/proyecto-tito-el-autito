@@ -243,9 +243,6 @@ subscribePOSTEvent("movimiento", (data) => {
     return mensaje; 
 });
 
-
-
-x
 startServer(3000, true);
 console.log(" Servidor corriendo en puerto 3000");
 

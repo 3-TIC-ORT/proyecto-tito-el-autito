@@ -4,43 +4,50 @@
   <meta charset="UTF-8">
   <title>Configuración</title>
   <link rel="stylesheet" href="./keybindings.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
 </head>
+
 <body>
 
   <!-- Barra superior -->
   <div class="header">
     <button class="btn-exit">Exit</button>
     <h1 class="title">CONFIGURACIÓN DE BOTONES</h1>
-    <button class="btn-save">Guardar</button>
+    <button id="guardar" class="btn-save">Guardar</button>
   </div>
 
-  <!-- Contenedores (4 cajas) -->
-  <div class="container">
-    <div class="box">
-      <h2>Adelante</h2>
-      <button class="btn-change" onclick="toggleInput('inputAdelante')">Cambiar</button>
-      <input id="inputAdelante" class="inputKey" type="text" placeholder="Nueva tecla">
-    </div>
+  <!-- FORMULARIO -->
+  <form id="registroForm">
+    <div class="container">
 
-    <div class="box">
-      <h2>Izquierda</h2>
-      <button class="btn-change" onclick="toggleInput('inputIzquierda')">Cambiar</button>
-      <input id="inputIzquierda" class="inputKey" type="text" placeholder="Nueva tecla">
-    </div>
+      <div class="box">
+        <h2>Adelante</h2>
+        <button type="button" class="btn-change">Cambiar</button>
+        <input id="up" class="inputKey" type="text" placeholder="Nueva tecla">
+      </div>
 
-    <div class="box">
-      <h2>Derecha</h2>
-      <button class="btn-change" onclick="toggleInput('inputDerecha')">Cambiar</button>
-      <input id="inputDerecha" class="inputKey" type="text" placeholder="Nueva tecla">
-    </div>
+      <div class="box">
+        <h2>Izquierda</h2>
+        <button type="button" class="btn-change">Cambiar</button>
+        <input id="left" class="inputKey" type="text" placeholder="Nueva tecla">
+      </div>
 
-    <div class="box">
-      <h2>Retroceder</h2>
-      <button class="btn-change" onclick="toggleInput('inputRetroceder')">Cambiar</button>
-      <input id="inputRetroceder" class="inputKey" type="text" placeholder="Nueva tecla">
+      <div class="box">
+        <h2>Derecha</h2>
+        <button type="button" class="btn-change">Cambiar</button>
+        <input id="right" class="inputKey" type="text" placeholder="Nueva tecla">
+      </div>
+
+      <div class="box">
+        <h2>Retroceder</h2>
+        <button type="button" class="btn-change">Cambiar</button>
+        <input id="down" class="inputKey" type="text" placeholder="Nueva tecla">
+      </div>
+
     </div>
-  </div>
+  </form>
+
   <script src="./keybindings.js"></script>
-
 </body>
 </html>
