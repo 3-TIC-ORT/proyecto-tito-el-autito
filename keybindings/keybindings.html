@@ -56,7 +56,7 @@
   <script>
     let usuario = localStorage.getItem("usuario");
 
-    if (!usuario) {
+    if (!usuario|| usuario === "null") {
       usuario = prompt("Ingresá tu usuario:");
       localStorage.setItem("usuario", usuario);
     }

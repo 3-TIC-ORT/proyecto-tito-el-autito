@@ -52,5 +52,32 @@
       "derecha": "d",
       "izquierda": "s"
     }
+  },
+  {
+    "usuario": "null",
+    "keybindings": {
+      "avanzar": "a",
+      "retroceder": "f",
+      "derecha": "d",
+      "izquierda": "s"
+    }
+  },
+  {
+    "usuario": "campa",
+    "keybindings": {
+      "avanzar": "a",
+      "retroceder": "f",
+      "derecha": "d",
+      "izquierda": "s"
+    }
+  },
+  {
+    "usuario": "rapha",
+    "keybindings": {
+      "avanzar": "a",
+      "retroceder": "d",
+      "derecha": "s",
+      "izquierda": "w"
+    }
   }
 ]

@@ -48,6 +48,7 @@ function mandar(event) {
   postEvent("keybinding", data)
     .then(res => console.log("Respuesta del server:", res))
     .catch(err => console.error("ERROR:", err));
+    window.location.href = "../jugar/jugar.html"
 }
 
 document.getElementById("guardar").addEventListener("click", mandar);

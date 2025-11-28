@@ -13,12 +13,14 @@ body {
   .contenedor-play {
     display: flex;
     justify-content: flex-end;
-    width: 180px;
+    margin-left: 1080px;
+    width: 230px;
     height: 40px;
+    left: 400px;
   }
 
 .botonsito-play {
-  width: 180px;
+  width: 400px;
   height: 40px;
   background-color: transparent;
   font-size: xx-large;

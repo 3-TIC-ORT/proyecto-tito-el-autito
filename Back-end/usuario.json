@@ -58,5 +58,10 @@
     "usuario": "juan",
     "contraseña": "putoo",
     "email": "50322805@est.ort.edu.ar"
+  },
+  {
+    "usuario": "campa",
+    "contraseña": "1",
+    "email": "campaQcampa"
   }
 ]
