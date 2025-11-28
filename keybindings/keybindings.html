@@ -19,6 +19,10 @@
 
   <!-- FORMULARIO -->
   <form id="registroForm">
+
+    <!-- USUARIO OCULTO PARA ENVIARLO AL BACKEND -->
+    <input type="hidden" id="usuario">
+
     <div class="container">
 
       <div class="box">
@@ -48,6 +52,21 @@
     </div>
   </form>
 
+  <!-- SCRIPT PARA CARGAR USUARIO Y PASARLO AL INPUT HIDDEN -->
+  <script>
+    let usuario = localStorage.getItem("usuario");
+
+    if (!usuario) {
+      usuario = prompt("Ingresá tu usuario:");
+      localStorage.setItem("usuario", usuario);
+    }
+
+    // Guardamos el usuario EN EL INPUT HIDDEN
+    document.getElementById("usuario").value = usuario;
+  </script>
+
+  <!-- SCRIPT PRINCIPAL -->
   <script src="./keybindings.js"></script>
+
 </body>
 </html>

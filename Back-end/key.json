@@ -34,5 +34,23 @@
       "derecha": "K",
       "izquierda": "H"
     }
+  },
+  {
+    "usuario": "default",
+    "keybindings": {
+      "avanzar": "w",
+      "retroceder": "s",
+      "derecha": "d",
+      "izquierda": "aa"
+    }
+  },
+  {
+    "usuario": "juan",
+    "keybindings": {
+      "avanzar": "a",
+      "retroceder": "w",
+      "derecha": "d",
+      "izquierda": "s"
+    }
   }
 ]
