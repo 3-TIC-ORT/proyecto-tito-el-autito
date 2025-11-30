@@ -5,70 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro - Soquetic App</title>
   <link rel="stylesheet" href="registro.css">
-  <style>
-    body {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    header h1 {
-      color: white;
-      text-shadow: 1px 1px 3px #000;
-    }
-
-    form {
-      background: white;
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      width: 300px;
-      text-align: center;
-    }
-
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      width: 95%;
-      padding: 10px;
-      background-color: #6c5ce7;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #a29bfe;
-    }
-
-    .mensaje {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-  </style>
 </head>
 <body>
   
   <header>
-    <h1>Registro</h1>
   </header>
 
   <main>
     <form id="registroForm">
+      <h2>REGISTRARSE</h2>
       <input type="text" id="usuario" placeholder="Nombre de usuario" required>
       <input type="email" id="email" placeholder="Gmail" required>
       <input type="password" id="contraseña" placeholder="Contraseña" required>
       <input type="password" id="repetir" placeholder="Repetir contraseña" required>
-      <h1 id="submit">Registrarse</h1>
+      <button id="btnReg" type="button">SIGUIENTE</button>
     </form>
     <p class="mensaje" id="mensaje"></p>
   </main>

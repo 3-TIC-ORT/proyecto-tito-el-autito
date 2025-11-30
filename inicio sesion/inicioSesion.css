@@ -20,8 +20,8 @@ main {
 .login-box {
   width: 350px;
   padding: 25px;
-  background-color: rgba(243, 241, 241, 0.45);   /* 🔥 fondo oscuro EXACTO */
-  border: 2px solid white;          /* 🔥 borde blanco como en la foto */
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1.9px solid white;          /* 🔥 borde blanco como en la foto */
   border-radius: 15px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
   margin-bottom: 20px;
@@ -30,9 +30,9 @@ main {
 /* ===== Título ===== */
 .login-box h2 {
   color: white;
-  font-size: 32px;
+  font-size: 40px;
   margin-bottom: 20px;
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 /* ===== Formulario ===== */
@@ -54,9 +54,9 @@ main {
 #btnLogin {
   padding: 12px;
   border-radius: 8px;
-  background-color: #b7b7b7;   /* gris como en la foto */
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1.9px solid white;
   color: white;
-  border: none;
   font-size: 16px;
   cursor: pointer;
   font-weight: bold;
