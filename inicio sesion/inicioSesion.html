@@ -3,98 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar Sesión - Soquetic App</title>
+  <title>Iniciar Sesión</title>
   <link rel="stylesheet" href="inicioSesion.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #74b9ff, #a29bfe);
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    header h1 {
-      color: white;
-      text-shadow: 1px 1px 3px #000;
-    }
-
-    form {
-      background: white;
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      width: 300px;
-      text-align: center;
-    }
-
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      width: 95%;
-      padding: 10px;
-      background-color: #6c5ce7;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #a29bfe;
-    }
-
-    .mensaje {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    .registro-link {
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: white;
-    }
-
-    .registro-link a {
-      color: #ffeaa7;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .registro-link a:hover {
-      text-decoration: underline;
-    }
-  </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>Iniciar Sesión</h1>
-  </header>
-
   <main>
-    <form id="loginForm">
-      <input type="text" id="usuario" placeholder="Nombre de usuario" required>
-      <input type="password" id="contraseña" placeholder="Contraseña" required>
-      <button id="btnLogin" type="button">Iniciar sesion</button>
-    </form>
-    <p class="mensaje" id="mensaje"></p>
-    <p class="registro-link">¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
+    <div class="login-box">
+
+      <h2>inicio de sesion</h2>
+
+      <form id="loginForm">
+        <input type="text" id="usuario" placeholder="nombre de usuario" required>
+        <input type="password" id="contraseña" placeholder="contraseña" required>
+
+        <button id="btnLogin" type="button">SIGUIENTE</button>
+      </form>
+
+    </div>
+
+    <p class="texto-registro">
+      ¿No tienes una cuenta?
+      <a href="registro.html" class="link-registro">Regístrate aquí</a>
+    </p>
   </main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
-  <script src="inicioSesion.js"></script>
-  <script>
-  
-  </script>
 </body>
 </html>

@@ -1,46 +1,85 @@
+/* ===== Fondo ===== */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .login-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    width: 300px;
-    text-align: center;
-  }
-  
-  .login-container h2 {
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .login-container input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .login-container button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .login-container button:hover {
-    background-color: #45a049;
-  }
+  margin: 0;
+  background-image: url(../img/registrarse-3.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* ===== Contenedor principal ===== */
+main {
+  text-align: center;
+}
+
+/* ===== Recuadro grande ===== */
+.login-box {
+  width: 350px;
+  padding: 25px;
+  background-color: rgba(243, 241, 241, 0.45);   /* 🔥 fondo oscuro EXACTO */
+  border: 2px solid white;          /* 🔥 borde blanco como en la foto */
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  margin-bottom: 20px;
+}
+
+/* ===== Título ===== */
+.login-box h2 {
+  color: white;
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* ===== Formulario ===== */
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#loginForm input {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* ===== Botón SIGUIENTE ===== */
+#btnLogin {
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #b7b7b7;   /* gris como en la foto */
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+#btnLogin:hover {
+  background-color: #d0d0d0;
+  color: black;
+}
+
+/* ===== Registro abajo ===== */
+.texto-registro {
+  color: white;
+  font-size: 16px;
+}
+
+.link-registro {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-registro:hover {
+  text-decoration: underline;
+}

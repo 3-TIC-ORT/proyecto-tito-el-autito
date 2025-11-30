@@ -1,49 +1,27 @@
 body {
-  background-image: url("../img/time\ machine.jpeg");
+  background-image: url("../img/time machine.jpeg");
   background-size: cover;
-    margin: 0;
-    font-family: Arial, sans-serif; 
-  }
-  
-  header {
-    padding: 20px;  
-    text-align: center;
-  }
-  
-  .contenedor-play {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: 1080px;
-    width: 230px;
-    height: 40px;
-    left: 400px;
-  }
-
-.botonsito-play {
-  width: 400px;
-  height: 40px;
-  background-color: transparent;
-  font-size: xx-large;
-  color: white;
-  border: 1.5px solid white;
-  padding: 0;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+  background-position: center;     /* centra la imagen */
+  background-repeat: no-repeat;    /* evita que se duplique */
+  width: 100vw;                    /* evita que flex o padding estiren el body */
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-.botonsito-play:hover {
-  background-color: rgba(255, 255, 255, 0.219);
-  color: rgba(231, 228, 223, 0.644);
+/* ------------------------ HEADER ------------------------ */
+
+header {
+  padding: 20px;
+  text-align: center;
 }
 
-  .contenedor-botones {
-   display: flex;
-   justify-content: flex-end;
-    gap: 20px;
-    padding: 10px 20px;
-  }
+.contenedor-botones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 10px 10px;
+}
 
 .boton {
   background-color: transparent;
@@ -55,22 +33,56 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 9px 7px 2.6px rgba(0, 0, 0, 0.3);
-  }
+}
 
 .boton:hover {
   background-color: rgba(255, 255, 255, 0.219);
   color: rgba(231, 228, 223, 0.644);
 }
-  
-  footer {
-    text-align: center;
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
+
+/* ------------------------ FOOTER + BOTÓN PLAY ------------------------ */
+
+footer {
+  position: absolute;
+  bottom: 35px;            /* 🔥 Más arriba todavía */
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contenedor-play {
+  margin: 0;
+  padding: 0;
+}
+
+.botonsito-play {
+  width: 330px;
+  height: 85px;
+  display: flex;
+  align-items: center;      /* 🔥 centra vertical */
+  justify-content: center;  /* 🔥 centra horizontal */
+  gap: 12px;
+  background-color: transparent;
+  font-size: 60px;
+  color: white;
+  border: 2px solid white;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  padding: 0;               /* 🔥 importante para centrar perfecto */
+  margin-right: 50px;
+  margin-top: 40px;
+}
+
+
+.botonsito-play:hover {
+  background-color: rgba(255, 255, 255, 0.219);
+  color: rgba(231, 228, 223, 0.644);
+}
 
 .playbutton {
-  width:20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
 }
