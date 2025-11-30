@@ -9,6 +9,6 @@ function iniciarSesion() {
         window.location.href = "../iinicio/index.html";
     })
 }
-let boton = document.getElementById("submit")
+let boton = document.getElementById("btnReg")
     boton.addEventListener("click", iniciarSesion)
     
