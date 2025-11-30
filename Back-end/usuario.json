@@ -63,5 +63,10 @@
     "usuario": "campa",
     "contraseña": "1",
     "email": "campaQcampa"
+  },
+  {
+    "usuario": "franco",
+    "contraseña": "1",
+    "email": "franco@trolo"
   }
 ]
