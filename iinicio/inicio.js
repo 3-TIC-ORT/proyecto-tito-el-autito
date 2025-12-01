@@ -4,10 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   botonConectar.addEventListener("click", () => {
     const usuario = localStorage.getItem("usuario");
 
-    if (usuario != "null") {
+    console.log("usuario actual:", usuario);
+
+    // Si NO estoy logueado
+    if (usuario === null || usuario === "null" || usuario === "") {
+      console.log("No logueado → ir a iniciar sesión");
       window.location.href = "../inicio sesion/inicioSesion.html";
     } else {
-      console.log("Usuario iniciado:", usuario);
+      console.log("Logueado → ir a keybindings");
       window.location.href = "../keybindings/keybindings.html";
     }
   });

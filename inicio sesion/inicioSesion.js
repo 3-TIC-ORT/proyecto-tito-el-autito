@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (respuesta === "OK" || respuesta === "El usuario existe." || respuesta === "Inicio de sesión exitoso.") {
         alert("¡Bienvenido!");
-        localStorage.setItem("usuario", usuario); 
+        localStorage.clear();              // Limpia todo lo que haya
+        localStorage.setItem("usuario", usuario);  // Guarda el usuario correcto 
         window.location.href = "../iinicio/index.html";
       } else {
         alert("Usuario o contraseña incorrectos");

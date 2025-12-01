@@ -4,25 +4,29 @@ document.querySelectorAll(".btn-change").forEach(btn => {
     const box = btn.parentElement;
     const input = box.querySelector(".inputKey");
 
-    btn.style.display = "none";   
-    input.style.display = "block"; 
+    // Mostrar input
+    btn.style.display = "none";
+    input.style.display = "block";
     input.focus();
 
-    // ENTER → terminar edición
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        input.style.display = "none";
-        btn.style.display = "block";
-      }
-    });
-
-    // Click afuera → terminar edición
-    input.addEventListener("blur", () => {
+    const cerrar = () => {
       input.style.display = "none";
       btn.style.display = "block";
-    });
+      input.removeEventListener("blur", cerrar);
+      input.removeEventListener("keydown", enterCheck);
+    };
+
+    const enterCheck = (e) => {
+      if (e.key === "Enter") {
+        cerrar();
+      }
+    };
+
+    input.addEventListener("blur", cerrar);
+    input.addEventListener("keydown", enterCheck);
   });
 });
+
 
 
 // --------- CONEXIÓN AL SERVIDOR ------------
@@ -45,11 +49,18 @@ function mandar(event) {
 
   console.log("Mandando al server:", data);
 
-  postEvent("keybinding", data)
-    .then(res => console.log("Respuesta del server:", res))
-    .catch(err => console.error("ERROR:", err));
-    window.location.href = "../jugar/jugar.html"
+  postEvent("keybinding", data);
+
+  // Tiempo mínimo para que el POST salga
+  setTimeout(() => {
+    window.location.href = "../jugar/jugar.html";
+  }, 100);
 }
+
 
 document.getElementById("guardar").addEventListener("click", mandar);
 formulario.addEventListener("submit", mandar);
+
+document.getElementById("btnExit").addEventListener("click", () => {
+  window.location.href = "../iinicio/index.html"
+})

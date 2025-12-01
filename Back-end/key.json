@@ -11,10 +11,10 @@
   {
     "usuario": "oli",
     "keybindings": {
-      "avanzar": "s",
-      "retroceder": "o",
-      "derecha": "e",
-      "izquierda": "r"
+      "avanzar": "c",
+      "retroceder": "n",
+      "derecha": "b",
+      "izquierda": "v"
     }
   },
   {
@@ -74,10 +74,10 @@
   {
     "usuario": "rapha",
     "keybindings": {
-      "avanzar": "a",
-      "retroceder": "d",
-      "derecha": "s",
-      "izquierda": "w"
+      "avanzar": "w",
+      "retroceder": "s",
+      "derecha": "d",
+      "izquierda": "a"
     }
   }
 ]
