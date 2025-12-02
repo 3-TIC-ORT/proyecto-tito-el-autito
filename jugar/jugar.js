@@ -1,3 +1,5 @@
+connect2Server()
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const usuarioActual = localStorage.getItem("usuario");
@@ -9,13 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Usuario activo:", usuarioActual);
     
 
-    cliente.connect2Server()
-
-
     let teclaPresionada = null;
 
     function enviarMovimiento(tecla) {
-        cliente.postEvent("movimiento", {
+        postEvent("movimiento", {
             usuario: usuarioActual,
             tecla: tecla
         });

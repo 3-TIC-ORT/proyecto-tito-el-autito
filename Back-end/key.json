@@ -74,10 +74,10 @@
   {
     "usuario": "rapha",
     "keybindings": {
-      "avanzar": "x",
-      "retroceder": "b",
-      "derecha": "v",
-      "izquierda": "c"
+      "avanzar": "a",
+      "retroceder": "f",
+      "derecha": "d",
+      "izquierda": "s"
     }
   }
 ]
