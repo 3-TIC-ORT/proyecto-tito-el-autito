@@ -157,7 +157,7 @@ subscribePOSTEvent("movimiento", (data) => {
     {
       console.log(" El mensaje es:", mensaje);
         const port = new SerialPort({
-          path: "COM3", 
+          path: "COM5", 
           baudRate: 9600,
         });
         const parser = new ReadlineParser();
